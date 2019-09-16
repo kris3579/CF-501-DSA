@@ -1,0 +1,24 @@
+{
+  "name": "501-challenges",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint '**/*.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^21.22.0",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {}
+}
