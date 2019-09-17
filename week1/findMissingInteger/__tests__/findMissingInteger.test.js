@@ -8,6 +8,7 @@ describe('Testing functionality of findMissingInteger function', () => {
 
     expect(findMissingInteger(testArray)).toEqual(7);
   });
+  
   test('Expecting to return "improperly sized array" if length does not equal 99', () => {
     const testArray1 = [];
     const testArray2 = [2, 3, 5, 6, 7];
