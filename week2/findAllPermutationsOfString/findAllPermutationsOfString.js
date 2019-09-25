@@ -1,35 +1,52 @@
-'use stric';
+'use strict';
 
-const buildPermutationsTree = (root, str, indicies) => {
-  let branchCounter = 0;
+// const findPermuatationsStartingWithLetter = (str, index, usedFirstLetters) => {
+//   const permutations = [];
 
-  for (let i = 0; i < str.length; i++) {
-    if (indicies.includes(str.charAt(i)) === false) {
-      const branchName = `b${branchCounter}`;
-      root[branchName] = new Node(str.charAt(i));
-      branchCounter += 1;
-    }
+//   if (usedFirstLetters.has(str.charAt(index)) === false) {
+//     for (let i = 0; i < str.length; i++) {
+//       if (i !== index) {
+        
+//       }
+//     }
+//   }
+// };
 
-    if (i === str.length) {
-      branchCounter = 0;
-    }
-  }
+// const findAllPermutations = (str) => {
+//   const usedFirstLetters = new Set();
+//   return findPermuatationsStartingWithLetter(str, 0, usedFirstLetters);
+// };
 
-  // permutations = buildPermutationsTree();
-};
+// const buildPermutationsTree = (root, str, indicies) => {
+//   let branchCounter = 0;
 
-const findAllPermutations = (str) => {
-  let foundPermutations = [];
+//   for (let i = 0; i < str.length; i++) {
+//     if (indicies.includes(str.charAt(i)) === false) {
+//       const branchName = `b${branchCounter}`;
+//       root[branchName] = new Node(str.charAt(i));
+//       branchCounter += 1;
+//     }
 
-  for (let i = 0; i < str.length; i++) {
-    const newPermutationsTree = new TreeWalker(str.charAt(i));
+//     if (i === str.length) {
+//       branchCounter = 0;
+//     }
+//   }
 
-    const permuationsStartWithChar = buildPermutationsTree(newPermutationsTree.root, str, [i]);
+//   // permutations = buildPermutationsTree();
+// };
 
-    foundPermutations = [...foundPermutations, ...permuationsStartWithChar];
-  }
+// const findAllPermutations = (str) => {
+//   let foundPermutations = [];
 
-  return foundPermutations;
-};
+//   for (let i = 0; i < str.length; i++) {
+//     const newPermutationsTree = new TreeWalker(str.charAt(i));
 
-module.exports = findAllPermutations;
+//     const permuationsStartWithChar = buildPermutationsTree(newPermutationsTree.root, str, [i]);
+
+//     foundPermutations = [...foundPermutations, ...permuationsStartWithChar];
+//   }
+
+//   return foundPermutations;
+// };
+
+// module.exports = findAllPermutations;
