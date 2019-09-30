@@ -31,7 +31,7 @@ const buildPermutations = (counstructedString, restOfString, permutations) => {
 // through n remaining string characters AND includes method checking n permutations found so far, 
 // inside n function calls, inside loop thorugh n string characters)
 
-// Space: O(2n) -> O(n) Where n is the number of characters in the given string
+// Space: O(3n) -> O(n) Where n is the number of characters in the given string
 // (n permutations stored in the return array, n first characters added to usedLetters set)
 
 const findAllPermutations = (str) => {
