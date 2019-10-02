@@ -1,52 +1,66 @@
 'use strict';
 
-// const findPermuatationsStartingWithLetter = (str, index, usedFirstLetters) => {
-//   const permutations = [];
+const buildPermutations = (counstructedString, restOfString, permutations) => {
+  if (restOfString.length === 1) {
+    let permutation = counstructedString;
+    permutation += restOfString;
 
-//   if (usedFirstLetters.has(str.charAt(index)) === false) {
-//     for (let i = 0; i < str.length; i++) {
-//       if (i !== index) {
-        
-//       }
-//     }
-//   }
-// };
+    if (!permutations.includes(permutation)) {
+      permutations.push(permutation);
+    }
 
-// const findAllPermutations = (str) => {
-//   const usedFirstLetters = new Set();
-//   return findPermuatationsStartingWithLetter(str, 0, usedFirstLetters);
-// };
+    return;
+  }
 
-// const buildPermutationsTree = (root, str, indicies) => {
-//   let branchCounter = 0;
+  for (let i = 0; i < restOfString.length; i++) {
+    let newConstructedString = counstructedString;
+    newConstructedString += restOfString.charAt(i);
 
-//   for (let i = 0; i < str.length; i++) {
-//     if (indicies.includes(str.charAt(i)) === false) {
-//       const branchName = `b${branchCounter}`;
-//       root[branchName] = new Node(str.charAt(i));
-//       branchCounter += 1;
-//     }
+    let newRestOfString = restOfString;
 
-//     if (i === str.length) {
-//       branchCounter = 0;
-//     }
-//   }
+    const firstHalfOfRest = newRestOfString.slice(0, i);
+    const secondHalfOfRest = newRestOfString.slice(i + 1);
 
-//   // permutations = buildPermutationsTree();
-// };
+    newRestOfString = firstHalfOfRest + secondHalfOfRest;
 
-// const findAllPermutations = (str) => {
-//   let foundPermutations = [];
+    buildPermutations(newConstructedString, newRestOfString, permutations);
+  }
+};
 
-//   for (let i = 0; i < str.length; i++) {
-//     const newPermutationsTree = new TreeWalker(str.charAt(i));
+// Time:O(n * n * 2n) -> O(n^3) Where n is the number of characters in the given string (looping
+// through n remaining string characters AND includes method checking n permutations found so far, 
+// inside n function calls, inside loop thorugh n string characters)
 
-//     const permuationsStartWithChar = buildPermutationsTree(newPermutationsTree.root, str, [i]);
+// Space: O(3n) -> O(n) Where n is the number of characters in the given string
+// (n permutations stored in the return array, n first characters added to usedLetters set)
 
-//     foundPermutations = [...foundPermutations, ...permuationsStartWithChar];
-//   }
+const findAllPermutations = (str) => {
+  if (str.length === 0) {
+    return [];
+  }
+  if (str.length === 1) {
+    return [str];
+  }
 
-//   return foundPermutations;
-// };
+  const permutations = [];
+  const usedLetters = new Set();
 
-// module.exports = findAllPermutations;
+  for (let i = 0; i < str.length; i++) {
+    if (!usedLetters.has(str.charAt(i))) {
+      usedLetters.add(str.charAt(i));
+
+      const counstructedString = str.charAt(i);
+
+      const firstHalfOfRest = str.slice(0, i);
+      const secondHalfOfRest = str.slice(i + 1);
+
+      const restOfString = firstHalfOfRest + secondHalfOfRest;
+
+      buildPermutations(counstructedString, restOfString, permutations);
+    }
+  }
+
+  return permutations;
+};
+
+module.exports = findAllPermutations;
